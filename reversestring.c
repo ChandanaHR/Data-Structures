@@ -86,3 +86,69 @@ int main()
 2.we need to print reverse of individual words.
   45
   ew deen ot tnirp esrever fo laudividni  .sdrow
+
+#Reversing entire string with space
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#define SIZE 20
+
+struct Stack{
+    int arr[SIZE];
+    int top;
+};
+
+void initStack(struct Stack *s) {
+    s->top = -1;
+}
+
+void push( struct Stack *s, int num){
+    s->top++;
+    s->arr[s->top] = num;
+}
+
+int isEmpty(struct Stack *s) {
+    return s->top == -1;
+}
+
+int peek(const struct Stack *s){
+    return s->arr[s->top];
+}
+
+int pop(struct Stack *s){
+    int e = s->arr[s->top];
+    s->top--;
+    return e;
+}
+
+void reverse(char str[]) {
+    int f;
+    struct Stack s;
+    initStack(&s);
+    for(int i=0;i<strlen(str);++i) 
+    {
+        push(&s,str[i]);
+    }
+    for(int i=0;i<strlen(str);++i) 
+    {
+        str[i] = pop(&s);
+    }
+    printf("reversed string %s",str);
+}
+
+int main()
+{
+    char str[20];
+    //gets(str);
+    scanf("%[^\n]s",str);
+    /*for(int i=0;i<strlen(str);i++) {
+        printf("%c\n",str[i]);
+    }*/
+    printf("%ld\n",strlen(str));
+    reverse(str);
+}
+
+#Output
+Hello World
+11
+reversed string dlroW olleH
