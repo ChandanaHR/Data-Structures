@@ -15,40 +15,40 @@ int n;
 
 void createdlist()
 {
-   if(head==NULL)
-   {
-      printf("Enter the number of nodes\n");
-      scanf("%d",&n);
-      if(n!=0)
-      {
-        int info;
-        struct node *newnode;
-        //struct node *temp;
-        newnode = (struct node*)malloc(sizeof(struct node));
-        temp = (struct node *)malloc(sizeof(struct node));
-        head = newnode;
-        temp = head;
-        printf("Enter the data to be inserted\n");
-        scanf("%d",&info);
-        head->data = info;
-        for(int i=1;i<n;i++)
+    temp = (struct node *)malloc(sizeof(struct node));
+    int info;
+    if(head == NULL)
+    {
+        printf("Enter the number of nodes\n");
+        scanf("%d",&n);
+        if(n!=0)
         {
-          newnode = malloc(sizeof(struct node));
-          temp->next = newnode;
-          printf("Enter the data to be inserted\n");
-          scanf("%d",&info);
-          newnode->data = info;
-         // temp->next = newnode->prev;
-          temp = temp->next;
+            printf("Enter the data to be inserted\n");
+            scanf("%d",&info);
+            struct node *newnode = (struct node *)malloc(sizeof(struct node));
+            newnode->data = info;
+            newnode->prev = NULL;
+            newnode->next = head;
+            head = newnode;
+            temp = head;
+            for(int i=1;i<n;i++)
+            {
+                printf("Enter the data to be inserted\n");
+                scanf("%d",&info);
+                struct node *newnode = (struct node *)malloc(sizeof(struct node));
+                newnode->data = info;
+                temp->next = newnode;
+                newnode->prev = temp;
+                temp = temp->next;
+            }
         }
-     }
-     printf("The list is created\n");
-   }
-   else
-   {
-     printf("The list is already created\n");
-   } 
-} 
+        printf("The list is created\n");
+    }
+    else
+    {
+        printf("The list is already created\n");
+    }
+}
 
 void traverse()
 {
